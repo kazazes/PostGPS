@@ -347,6 +347,8 @@
 				INFOPLIST_FILE = PostGPS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				POST_URL = YOUR_URL_HERE;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peterkazazes.location;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos8.1;
 			};
@@ -360,6 +362,8 @@
 				INFOPLIST_FILE = PostGPS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				POST_URL = YOUR_URL_HERE;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peterkazazes.location;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos8.1;
 			};

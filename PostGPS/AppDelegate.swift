@@ -46,8 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let url = YOUR_URL_HERE 
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
         request.HTTPMethod = "POST"
+        request.HTTPMethod = NSBundle.mainBundle().objectForInfoDictionaryKey("POST_URL") as! String
         request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, respons, error) -> Void in
+        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             print("sent \(error)")
         }).resume()
     }
