@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager = CLLocationManager()
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.distanceFilter = 10;
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startMonitoringSignificantLocationChanges()
         print("\(locationManager.location)")
         return true
@@ -42,11 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             "speed": location.speed,
             "course": location.course,
         ]
-        let body = "&".join(map(data) { (key,value) in "\(key)=\(value)" })
-        let url = YOUR_URL_HERE 
-        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        request.HTTPMethod = "POST"
-        request.HTTPMethod = NSBundle.mainBundle().objectForInfoDictionaryKey("POST_URL") as! String
+        let body = data.map { (key,value) in "\(key)=\(value)" }.joinWithSeparator("&")
+        let url = NSBundle.mainBundle().objectForInfoDictionaryKey("POST_URL") as! String
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.HTTPMethod = "POST";
         request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
         NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             print("sent \(error)")
