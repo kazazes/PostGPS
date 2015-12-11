@@ -19,18 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         if !CLLocationManager.locationServicesEnabled() {
-            println("No location services")
+            print("No location services")
         }
         locationManager = CLLocationManager()
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.startMonitoringSignificantLocationChanges()
-        println("\(locationManager.location)")
+        print("\(locationManager.location)")
         return true
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateToLocation location: CLLocation!, fromLocation oldLocation: CLLocation!) {
+    func locationManager(manager: CLLocationManager, didUpdateToLocation location: CLLocation, fromLocation oldLocation: CLLocation) {
         
         let data : [String:AnyObject] = [
             "latitude": location.coordinate.latitude,
@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         request.HTTPMethod = "POST"
         request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
         NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, respons, error) -> Void in
-            println("sent \(error)")
+            print("sent \(error)")
         }).resume()
     }
     
